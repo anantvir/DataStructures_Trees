@@ -112,6 +112,6 @@ class LinkedBinaryTree:
         return temp
 
 t= LinkedBinaryTree()
-p = t.add_root(2)
-t._add_left_child(5,p)
-t.add_right_child(6,p)
+p = t.add_root(2)       # Testing
+t._add_left_child(5,p)  # pass positions while adding new children
+t.add_right_child(6,p)  
