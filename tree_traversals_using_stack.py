@@ -74,15 +74,36 @@ class BinaryTree:
         stack.push(None)                                        # Push Null as 1st element of stack to end the while loop
 
         while(self.current_ptr != None):
-
             print('Value of node :',self.current_ptr.info)      # Process the node
-            
             if self.current_ptr.right_child is not None:
                 stack.push(self.current_ptr.right_child)        # Push right child onto stack
             if self.current_ptr.left_child is not None:
                 self.current_ptr = self.current_ptr.left_child  # Move to left child
             else:
-                self.current_ptr = stack.pop()                  # pop from stack to process righ children
+                self.current_ptr = stack.pop()                  # pop from stack to process right children
+    
+    def inorder(self,node):
+        self.current_ptr = node
+        stack = StackUsingList()
+        stack.push(None)
+        while(self.current_ptr is not None):
+            stack.push(self.current_ptr)    
+            self.current_ptr = self.current_ptr.left_child
+        self.current_ptr = stack.pop()
+        while(self.current_ptr != None):
+            print("Value of node :",self.current_ptr.info)      # Process the node
+            if self.current_ptr.right_child is not None:
+                self.current_ptr = self.current_ptr.right_child # Move current pointer to right is right child exists
+                while(self.current_ptr != None):                # Push left children on stack again 
+                    stack.push(self.current_ptr)
+                    if self.current_ptr.left_child is not None:
+                        self.current_ptr = self.current_ptr.left_child
+                    else:
+                        self.current_ptr = None                 # Make current pointer Null explicitly to exit while loop of no more left children
+                self.current_ptr = stack.pop()                  # Again pop and make top of stack as current pointer
+            else:
+                self.current_ptr = stack.pop()
+
             
 
 
@@ -92,6 +113,6 @@ c1 = t.add_left_child(1,root)
 c2 = t.add_right_child(8,root)
 cc1 = t.add_left_child(22,c1)
 cc2 = t.add_right_child(33,c1)
-t.preorder(root)
+t.inorder(root)
 
 
