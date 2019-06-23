@@ -14,7 +14,7 @@ class LinkedBinaryTree:
             self._right_child = right_child
     
     class Position:
-        def __init__(self,container, node):     # Container--> it holds a reference to current linked binary tree. So it helps keep track of nodes which belong to this particlar tree. If uses passes a position which is not an instance of LinkedBinaryTree or this particular instance of LnkedBinaryTree, then we can detect it through this container
+        def __init__(self,container, node):     # Container--> it holds a reference to current linked binary tree. So it helps keep track of nodes which belong to this particlar tree. If user passes a position which is not an instance of LinkedBinaryTree or this particular instance of LnkedBinaryTree, then we can detect it through this container
             self._container = container
             self._node = node
         
