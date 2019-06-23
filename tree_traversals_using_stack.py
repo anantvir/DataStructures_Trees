@@ -1,3 +1,5 @@
+"""Author - Anantvir Singh, concept reference:= Data Structures in C by Seymour Lipschutz"""
+
 class StackEmpty(Exception):
     pass
 
@@ -69,18 +71,18 @@ class BinaryTree:
     def preorder(self,node):
         self.current_ptr = node
         stack = StackUsingList()
-        stack.push(None)
+        stack.push(None)                                        # Push Null as 1st element of stack to end the while loop
 
         while(self.current_ptr != None):
 
-            print('Value of node :',self.current_ptr.info)
+            print('Value of node :',self.current_ptr.info)      # Process the node
             
             if self.current_ptr.right_child is not None:
-                stack.push(self.current_ptr.right_child)
+                stack.push(self.current_ptr.right_child)        # Push right child onto stack
             if self.current_ptr.left_child is not None:
-                self.current_ptr = self.current_ptr.left_child
+                self.current_ptr = self.current_ptr.left_child  # Move to left child
             else:
-                self.current_ptr = stack.pop()
+                self.current_ptr = stack.pop()                  # pop from stack to process righ children
             
 
 
