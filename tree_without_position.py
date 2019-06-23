@@ -1,3 +1,5 @@
+"""Generic Linked Tree where children are stored in any iterable"""
+
 class Node:
     def __init__(self,info,parent =None, children = None):
         self.info = info
@@ -21,10 +23,27 @@ class Tree:
         if type(prnt) is Node:
             newNode = Node(item,prnt)
             prnt.children.append(newNode)
-        return prnt.children,newNode.info
+        return newNode
+
+    def preorder(self,node):
+        print('Current node is :',node.info)        # Process node as per requirement
+        
+        for child in node.children:
+            self.preorder(child)
+
+    def postorder(self,node):
+
+        for child in node.children:
+            self.postorder(child)
+
+        print('Current node is :',node.info)        # Process node as per requirement
 
 t = Tree()
 root = t.add_root(5)
-print(t.add_child(3,root))
+n1 = t.add_child(3,root)
+t.add_child(21, n1)
+t.add_child(47, n1)
 
-print(t.add_child(8, root))
+t.add_child(8, root)
+t.preorder(root)
+t.postorder(root)
