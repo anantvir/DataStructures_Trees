@@ -36,6 +36,7 @@ class BinaryTree:
             self.parent = parent
             self.left_child = left_child
             self.right_child = right_child
+            self.hasBeenProcessed = False
 
     def __init__(self):
         self.root = None
@@ -103,7 +104,29 @@ class BinaryTree:
                 self.current_ptr = stack.pop()                  # Again pop and make top of stack as current pointer
             else:
                 self.current_ptr = stack.pop()
-
+    
+    def postorder(self,node):
+        self.current_ptr = node
+        stack = StackUsingList()
+        stack.push(None)
+        while(self.current_ptr is not None):        # Push all left children on stack
+            stack.push(self.current_ptr)
+            self.current_ptr = self.current_ptr.left_child
+        self.current_ptr = stack.top()              # current now points to top of stack
+        while(self.current_ptr is not None):
+            
+            if self.current_ptr.right_child is not None and not self.current_ptr.hasBeenProcessed:
+                self.current_ptr.hasBeenProcessed = True    # Make a new helper flag or else if will convert to infinite loop in second iteration as current pointer will always have a right child.
+                self.current_ptr = self.current_ptr.right_child
+                
+                while(self.current_ptr is not None):    # Again push all left children on stack
+                    stack.push(self.current_ptr)
+                    self.current_ptr = self.current_ptr.left_child
+                self.current_ptr = stack.top()          # set current pointer
+            else:
+                self.current_ptr = stack.pop()          # If no right child, then just pop and process the node
+                print('Value of node :',self.current_ptr.info)
+            self.current_ptr = stack.top()
             
 
 
@@ -113,6 +136,6 @@ c1 = t.add_left_child(1,root)
 c2 = t.add_right_child(8,root)
 cc1 = t.add_left_child(22,c1)
 cc2 = t.add_right_child(33,c1)
-t.inorder(root)
+t.postorder(root)
 
 
