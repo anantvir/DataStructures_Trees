@@ -1,5 +1,6 @@
+"""Author - Anantvir Singh, concept reference:= Data Structures in C by Seymour Lipschutz"""
 class AVLSearchTree:
-
+    #--------------- Since Node class is needed only inside AVLSearchTree class, so make it an inner class------------
     class Node:
         def __init__(self,info,parent =None,left_child = None,right_child = None):
             self.info = info
@@ -10,9 +11,9 @@ class AVLSearchTree:
     def __init__(self):
         self.root = None
         self.size = 0
-        self.current_ptr = None
+        self.current_ptr = None             # Since traversals are required for rotations
     
-    def getBalanceFactor(self,node):
+    def getBalanceFactor(self,node):        # compares height of left and righ subtree
         left_edge_count = 0
         self.current_ptr = node
         while self.current_ptr is not None:
@@ -69,7 +70,7 @@ class AVLSearchTree:
             LOC_PAR[1].right_child = newNode
         return newNode
 
-    def RR_rotation(self,node):
+    def RR_rotation(self,node):                             # Concept: Data Structures in C by Seymour Lipschutz page 7.52
         temp =self.root
         temp.right_child = None
         if node.left_child is not None:
