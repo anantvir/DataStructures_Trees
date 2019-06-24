@@ -33,7 +33,8 @@ class BinarySearchTree:
         while self.CURR_PTR is not None:
             if item == self.CURR_PTR.info:
                 LOCATION = self.CURR_PTR
-                PARENT = SAVE 
+                PARENT = SAVE
+                return LOCATION,PARENT 
             if item < self.CURR_PTR.info:
                 SAVE = self.CURR_PTR
                 self.CURR_PTR = self.CURR_PTR.left_child
@@ -62,6 +63,8 @@ t.insertBST(5)
 t.insertBST(8)
 t.insertBST(2)
 t.insertBST(98)
+print(t.find(2))
+print('hello')
 
 
 
