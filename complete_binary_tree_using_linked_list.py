@@ -74,7 +74,7 @@ class LinkedCompleteBinaryTree:
             self.Q.enqueue(newNode)
             self.root = newNode
         else:
-            existing_node = self.Q.get_front_node() """Get front element of queue"""        # can also use while loop here
+            existing_node = self.Q.get_front_node()     # Get front element of queue------- # can also use while loop here
             if existing_node._left_child is None:       # check if left child is None 
                 newNode = self.Node(item)
                 existing_node._left_child = newNode     # if yes insert new node there
@@ -106,3 +106,6 @@ t.insert(2)
 t.insert(22)
 t.insert(33)
 t.insert(44)
+t.insert(100)
+t.insert(179)
+t.insert(148)
