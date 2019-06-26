@@ -1,3 +1,5 @@
+""" Author - Anantvir Singh, concept reference:= Data Structures in C by Seymour Lipschutz"""
+
 class Node:
     def __init__(self,info,link =None):
         self.info = info
@@ -72,21 +74,21 @@ class LinkedCompleteBinaryTree:
             self.Q.enqueue(newNode)
             self.root = newNode
         else:
-            existing_node = self.Q.get_front_node()
-            if existing_node._left_child is None:
+            existing_node = self.Q.get_front_node() """Get front element of queue"""        # can also use while loop here
+            if existing_node._left_child is None:       # check if left child is None 
                 newNode = self.Node(item)
-                existing_node._left_child = newNode
+                existing_node._left_child = newNode     # if yes insert new node there
                 self.size += 1
-            elif existing_node._right_child is None:
+            elif existing_node._right_child is None:    # check if left child is None
                 newNode = self.Node(item)
-                existing_node._right_child = newNode
+                existing_node._right_child = newNode    # if yes insert new node there
                 self.size += 1
             else:
                 newNode = self.Node(item)
-                self.Q.enqueue(existing_node._left_child)
+                self.Q.enqueue(existing_node._left_child)   # if both children are not Null, then enquque both children and dequeue the parent
                 self.Q.enqueue(existing_node._right_child)
-                self.Q.dequeue()
-                top_node = self.Q.get_front_node()
+                self.Q.dequeue()                            # dequeue the parent as both its child nodes are full
+                top_node = self.Q.get_front_node()          # get front element of queue and repeat the above steps
                 if top_node._left_child is None:
                     top_node._left_child = newNode
                     self.size += 1
