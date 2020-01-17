@@ -117,6 +117,41 @@ class LinkedBinarySearchTree:
         print("Delete function completed !")
 
 
+    """--------------Preorder Traversal using Stacks ------------------"""
+    def preorder(self):
+        STACK = [None]*1
+        PTR = self.root
+        output_list = []
+        while PTR != None:
+            output_list.append(PTR.info)
+            if PTR.right_child != None:
+                STACK.append(PTR.right_child)
+            if PTR.left_child != None:
+                PTR = PTR.left_child
+            else:
+                PTR = STACK.pop()
+        return output_list
+
+    """--------------Inorder Traversal using Stacks ------------------"""
+    def inorder(self):
+        STACK = [None]*1
+        PTR = self.root
+        output_list = []
+        while PTR != None:
+            STACK.append(PTR)
+            PTR = PTR.left_child
+        PTR = STACK.pop()
+        while PTR != None:
+            output_list.append(PTR.info)
+            if PTR.right_child != None:
+                PTR = PTR.right_child
+                while PTR != None:
+                    STACK.append(PTR)
+                    PTR = PTR.left_child
+            PTR = STACK.pop()
+        return output_list
+
+
 
 t = LinkedBinarySearchTree()
 
@@ -131,7 +166,10 @@ t.insert_item(66)
 
 #t.delete(44)
 #t.delete(75)
-t.delete(25)
+#t.delete(25)
+
+print(t.preorder())
+print(t.inorder())
 
 print('hello')
 
