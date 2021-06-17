@@ -78,10 +78,12 @@ class LinkedCompleteBinaryTree:
             if existing_node._left_child is None:       # check if left child is None 
                 newNode = self.Node(item)
                 existing_node._left_child = newNode     # if yes insert new node there
+                newNode._parent = existing_node
                 self.size += 1
             elif existing_node._right_child is None:    # check if left child is None
                 newNode = self.Node(item)
                 existing_node._right_child = newNode    # if yes insert new node there
+                newNode._parent = existing_node
                 self.size += 1
             else:
                 newNode = self.Node(item)
@@ -91,11 +93,14 @@ class LinkedCompleteBinaryTree:
                 top_node = self.Q.get_front_node()          # get front element of queue and repeat the above steps
                 if top_node._left_child is None:
                     top_node._left_child = newNode
+                    newNode._parent = top_node
                     self.size += 1
                 elif top_node._right_child is None:
                     top_node._right_child = newNode
+                    newNode._parent = top_node
                     self.size += 1
-        return newNode
+        frontOfQueue = self.Q.get_front_node()
+        return frontOfQueue
 
 t = LinkedCompleteBinaryTree()
 t.insert(4)
