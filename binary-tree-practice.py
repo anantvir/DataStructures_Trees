@@ -54,7 +54,7 @@ class LinkedBinaryTree:
             newNode.parent = oldNode.parent
             newNode.left_child = oldNode.left_child
             newNode.right_child = oldNode.right_child
-            if oldNode.parent.left_child == oldNode:
+            if oldNode.parent.left_child == oldNode:        # check if oldNode is left or right child of parent. Then accordingly make the same parent for newNode
                 oldNode.parent.left_child = newNode
             if oldNode.parent.right_child == oldNode:
                 oldNode.parent.right_child = newNode 
