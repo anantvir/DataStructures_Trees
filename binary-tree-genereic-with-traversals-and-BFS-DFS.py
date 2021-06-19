@@ -62,7 +62,51 @@ class LinkedBinaryTree:
             oldNode.left_child = None
             oldNode.right_child = None
             print("Old Node replaced successfully !")
+
+    def children(self, node):
+        temp = []
+        if node.left_child != None:
+            temp.append(node.left_child)
+        if node.right_child != None:
+            temp.append(node.right_child)
+        return temp
+
+    # Visit the root, then starting from leftmost child, make leftmost child as root and recursively call preorder i.e recursively visit children
+    # starting from leftmost child by making it as root until we reach the leftmost leaf, then it comes out of 
+    # recursion stack and proceeds to right children 
+
+    def preorder(self, root):
+        # Perform visit action
+        print(root.data)
+        for child in self.children(root):
+            self.preorder(child)        # First visit child, then recursively traverse subtree rooted at child
     
+    # left-right-root i.e root traversed at last, so go to leftmost leaf first, then visit it, then visit right subtree
+    # and then visit the root
+
+    def postorder(self, root):
+        for child in self.children(root):
+            self.postorder(child)       # Recursively traverse subtree rooted at at child and then visit the child
+        # Perform visit action
+        print(root.data) 
+    
+    #
+    def inorder(self, root):
+        if root.left_child:
+            self.inorder(root.left_child)
+        # visit
+        print(root.data)
+        if root.right_child:
+            self.inorder(root.right_child)
+
+    # Traverse each level of tree breadth wise using Queue
+    def BFS(self):
+
+        return
+    
+    def DFS(self):
+        return
+
 
 t = LinkedBinaryTree()
 root = t.add_root(1)
@@ -73,8 +117,11 @@ n2 = t.add_right_child(3, root)
 n3 = t.add_left_child(4, n1)
 n4 = t.add_right_child(5, n1)
 
-t.replace(n1, n2)
+#t.replace(n1, n2)
 
-print("Hello")
+t.preorder(root)
+t.postorder(root)
+t.inorder(root)
+print("Finished")
 
 
